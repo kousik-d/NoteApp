@@ -14,9 +14,7 @@ class NoteViewModel(val noteRepository: NoteRepository): ViewModel() {
 
     val allNotes :LiveData<List<Note>> = noteRepository.allNotes.asLiveData()
 
-    companion object {
-        var count = 0
-    }
+
 
     fun insertNote(note : Note) = viewModelScope.launch(IO) {
         noteRepository.insertNote(note)
@@ -34,4 +32,7 @@ class NoteViewModel(val noteRepository: NoteRepository): ViewModel() {
             noteRepository.getFirstNote()
         }.await()
 
+    fun deleteAllNote() = viewModelScope.launch(IO) {
+        noteRepository.deleteAllNotes()
+    }
 }

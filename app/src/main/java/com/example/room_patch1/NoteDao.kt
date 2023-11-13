@@ -23,6 +23,9 @@ interface NoteDao {
     @Query("SELECT * FROM NoteTable")
     fun getAllNotes(): Flow<List<Note>>
 
+    @Query("DELETE FROM NoteTable")
+    fun deleteAllNote()
+
     @Query("SELECT * FROM NoteTable ORDER BY noteId LIMIT 1")
     suspend fun getTopNote(): Note
 }

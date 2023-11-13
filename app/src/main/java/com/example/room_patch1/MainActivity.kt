@@ -46,7 +46,7 @@ class MainActivity : AppCompatActivity() {
 
 
         noteViewModel.allNotes.observe(this, Observer {
-            Log.i("LISTED - Count","$it count ${NoteViewModel.count}")
+            //Log.i("LISTED - Count","$it count ${NoteViewModel.count}")
             noteAdapter.list =it
             noteAdapter.notifyDataSetChanged()
         })
@@ -62,11 +62,16 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+
+        deleteBtn.setOnLongClickListener {
+            noteViewModel.deleteAllNote()
+            Toast.makeText(this,"Deleted All",Toast.LENGTH_SHORT).show()
+            true
+        }
+
         addButton.setOnClickListener {
             OpenDialog()
         }
-
-
     }
     fun deleteNote(note:Note){
         noteViewModel.deleteNote(note)

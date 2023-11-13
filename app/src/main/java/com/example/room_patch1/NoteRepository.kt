@@ -14,4 +14,6 @@ class NoteRepository(private val dataBase: NoteDataBase) {
     suspend fun updateNote(note: Note) = dataBase.getNoteDao().updateNote(note)
 
     suspend fun getFirstNote() = dataBase.getNoteDao().getTopNote()
+
+    suspend fun deleteAllNotes() = dataBase.getNoteDao().deleteAllNote()
 }
